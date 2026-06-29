@@ -297,3 +297,64 @@ SELECT
          SELECT *
          FROM suppliers
          ORDER BY supplier_id;
+
+
+   -- Find medicines that cost more than the average price.
+      
+      SELECT AVG(unit_price) 
+      FROM medicines;
+      
+      SELECT 
+         medicine_name,
+         unit_price
+         FROM medicines
+         WHERE unit_price >
+         (
+         
+         SELECT AVG(unit_price)
+         FROM medicines
+         );
+         
+         -- Find the most expensive medicine without using ORDER BY or LIMIT 1.
+         
+         SELECT 
+              medicine_name,
+              unit_price
+             FROM medicines
+             WHERE unit_price =
+             (
+				SELECT MAX(unit_price)
+                FROM medicines
+            
+             );
+             
+             -- Find medicines that have never been purchased.
+             
+             SELECT 
+                 m.medicine_id,
+                 m.medicine_name
+               FROM medicines AS m
+               WHERE NOT EXISTS
+               (
+               SELECT 1
+               FROM purchases AS p
+               WHERE p.medicine_id = m.medicine_id
+               );
+               
+                  -- Insert a new medicine that has never been purchased:
+             
+             INSERT INTO medicines
+(
+    medicine_name,
+    category_id,
+    unit_price,
+    manufacturer
+)
+VALUES
+(
+    'Zinc Tablets',
+    3,
+    95.00,
+    'Cipla'
+);
+             
