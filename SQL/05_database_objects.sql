@@ -1,11 +1,3 @@
--- =====================================================
--- Smart Pharmacy Inventory & Expiry Management System
--- File: 05_database_objects.sql
--- Description: Database objects including Views,
--- Indexes, Stored Procedures and Triggers.
--- =====================================================
-
-USE smart_pharmacy_inventory;
 - "Show me all medicines with their category, stock quantity, and reorder level."
 
 CREATE VIEW vw_inventory_status AS
